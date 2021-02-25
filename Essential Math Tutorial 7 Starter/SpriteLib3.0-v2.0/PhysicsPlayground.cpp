@@ -23,9 +23,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 	//Sets up aspect ratio for the camera
 	float aspectRatio = windowWidth / windowHeight;
-
-	EffectManager::CreateEffect(EffectType::Vignette, windowWidth, windowHeight);
-	EffectManager::CreateEffect(EffectType::Sepia, windowWidth, windowHeight);
 	
 
 	//Setup MainCamera Entity
@@ -49,24 +46,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		//Attaches the camera to vert and horiz scrolls
 		ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-	}
-
-	//Setup new Entity
-	{
-		/*Scene::CreateSprite(m_sceneReg, "HelloWorld.png", 100, 60, 0.5f, vec3(0.f, 0.f, 0.f));*/
-
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-
-		//Set up the components
-		std::string fileName = "HelloWorld.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 100, 60);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.5f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 0.f));
 	}
 	
 	//Link entity
@@ -111,9 +90,29 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 		tempPhsBody.SetGravityScale(1.f);
 	}
+	//Flashlight entity
+	{
+
+		auto entity = ECS::CreateEntity();
+		MainEntities::MainFlashlight(entity);
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+
+		//Sets up the components
+		std::string fileName = "LinkStandby.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 40, 30);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 2.f));
+
+	}
+
+
 
 	//Setup static Top Platform
-	{
+		{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
 
@@ -387,8 +386,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 }
 
 void PhysicsPlayground::Update()
-{
-	
+{ 
+	ECS::GetComponent<Transform>(MainEntities::MainFlashlight()).SetPosition(ECS::GetComponent<Transform>(MainEntities::MainPlayer()).GetPosition());
 }
 
 void PhysicsPlayground::GUI()
@@ -636,19 +635,7 @@ void PhysicsPlayground::KeyboardUp()
 
 	float speed = 1.f;
 	b2Vec2 vel = b2Vec2(0.f, 0.f);
-	if (Input::GetKeyUp(Key::A))
-	{
-		player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
-	}
-	if (Input::GetKeyUp(Key::D))
-	{
-		player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
-	}
-	if (Input::GetKeyUp(Key::W))
-	{
-		player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
-	}
-	if (Input::GetKeyUp(Key::S))
+	if (Input::GetKeyUp(Key::A)|| Input::GetKeyUp(Key::W)|| Input::GetKeyUp(Key::S)|| Input::GetKeyUp(Key::D))
 	{
 		player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
 	}

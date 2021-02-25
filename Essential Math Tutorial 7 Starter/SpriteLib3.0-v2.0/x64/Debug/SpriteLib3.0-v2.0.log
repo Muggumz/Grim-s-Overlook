@@ -1,6 +1,2 @@
 ﻿  PhysicsPlayground.cpp
-C:\Users\artyf\OneDrive\Desktop\Grim-s-Overlook\Essential Math Tutorial 7 Starter\SpriteLib3.0-v2.0\PhysicsPlayground.cpp(27,65): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\artyf\OneDrive\Desktop\Grim-s-Overlook\Essential Math Tutorial 7 Starter\SpriteLib3.0-v2.0\PhysicsPlayground.cpp(27,52): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\artyf\OneDrive\Desktop\Grim-s-Overlook\Essential Math Tutorial 7 Starter\SpriteLib3.0-v2.0\PhysicsPlayground.cpp(28,62): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\artyf\OneDrive\Desktop\Grim-s-Overlook\Essential Math Tutorial 7 Starter\SpriteLib3.0-v2.0\PhysicsPlayground.cpp(28,49): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
   SpriteLib3.0-v2.0.vcxproj -> C:\Users\artyf\OneDrive\Desktop\Grim-s-Overlook\Essential Math Tutorial 7 Starter\x64\Debug\SpriteLib3.0-v2.0.exe
